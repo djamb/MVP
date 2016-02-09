@@ -3,9 +3,6 @@ package aminano.com.mvp.presenter;
 import aminano.com.mvp.interactor.LoadInteractor;
 import aminano.com.mvp.interactor.SaveInteractor;
 import aminano.com.mvp.view.MainViewInterface;
-import android.content.Context;
-import android.os.Handler;
-import android.util.Log;
 
 /**
  * Created by Usuario on 14/11/2015.
@@ -32,7 +29,6 @@ public class MainPresenter implements MainPresenterInterface, MainPresenterListe
   public void doActionLoad() {
     mainView.enableLoading();
     loadInteractor.loadSharedPreferences(this);
-
   }
 
   @Override
