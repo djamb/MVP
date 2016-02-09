@@ -16,6 +16,7 @@ public class LoadInteractor extends MainInteractor {
     runUiThread(listener);
   }
 
+  @Override
   public void action(MainPresenterListener listener) {
     listener.onSuccessLoad(sharedPreferencesRepository.loadString());
   }

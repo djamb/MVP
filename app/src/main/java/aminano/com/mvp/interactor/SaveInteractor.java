@@ -21,10 +21,11 @@ public class SaveInteractor extends MainInteractor {
     runUiThread(listener);
   }
 
+  @Override
   public void action(final MainPresenterListener listener) {
     if (TextUtils.isEmpty(text) || TextUtils.equals(text,
         App.getContext().getResources().getString(R.string.ass)) || TextUtils.equals(text,
-        App.getContext().getResources().getString(R.string.pussy))) {
+        App.getContext().getResources().getString(R.string.monkey))) {
       listener.onError(text);
     } else {
       sharedPreferencesRepository.saveString(text);

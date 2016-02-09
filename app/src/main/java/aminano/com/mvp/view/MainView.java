@@ -28,7 +28,7 @@ public class MainView extends Activity implements MainViewInterface, Button.OnCl
     setContentView(R.layout.activity_main);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
     editText = (EditText) findViewById(R.id.editText);
-    sharedPreferencesRepository = new SharedPreferencesRepository(this);
+    sharedPreferencesRepository = new SharedPreferencesRepository();
     loadInteractor = new LoadInteractor(sharedPreferencesRepository);
     saveInteractor = new SaveInteractor(sharedPreferencesRepository);
     mainPresenter = new MainPresenter(this, saveInteractor, loadInteractor);
@@ -56,11 +56,6 @@ public class MainView extends Activity implements MainViewInterface, Button.OnCl
     new AlertDialog.Builder(this).setTitle(R.string.wrong_word)
         .setMessage(text)
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            editText.setText("");
-          }
-        })
-        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int which) {
             editText.setText("");
           }
