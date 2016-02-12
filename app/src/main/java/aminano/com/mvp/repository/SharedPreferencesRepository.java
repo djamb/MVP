@@ -1,6 +1,7 @@
 package aminano.com.mvp.repository;
 
 import aminano.com.mvp.App;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -9,17 +10,21 @@ import android.preference.PreferenceManager;
  */
 public class SharedPreferencesRepository implements Repository {
   private SharedPreferences.Editor prefs;
+  private Context context;
+  public SharedPreferencesRepository(Context context){
+    this.context=context;
+  }
 
   @Override
   public void saveString(String text) {
-    prefs = PreferenceManager.getDefaultSharedPreferences(App.getContext()).edit();
+    prefs = PreferenceManager.getDefaultSharedPreferences(context).edit();
     prefs.putString("text", text);
     prefs.apply();
   }
 
   @Override
   public String loadString() {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.getContext());
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     String name = preferences.getString("text", "");
     return name;
   }

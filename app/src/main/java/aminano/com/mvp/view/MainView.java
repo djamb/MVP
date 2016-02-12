@@ -28,7 +28,7 @@ public class MainView extends Activity implements MainViewInterface, Button.OnCl
     setContentView(R.layout.activity_main);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
     editText = (EditText) findViewById(R.id.editText);
-    sharedPreferencesRepository = new SharedPreferencesRepository();
+    sharedPreferencesRepository = new SharedPreferencesRepository(this);
     loadInteractor = new LoadInteractor(sharedPreferencesRepository);
     saveInteractor = new SaveInteractor(sharedPreferencesRepository);
     mainPresenter = new MainPresenter(this, saveInteractor, loadInteractor);
