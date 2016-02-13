@@ -3,7 +3,7 @@ package aminano.com.mvp.interactor;
 import aminano.com.mvp.App;
 import aminano.com.mvp.R;
 import aminano.com.mvp.presenter.MainPresenterListener;
-import aminano.com.mvp.repository.SharedPreferencesRepository;
+import aminano.com.mvp.repository.Repository;
 import android.text.TextUtils;
 
 /**
@@ -12,11 +12,11 @@ import android.text.TextUtils;
 public class SaveInteractor extends MainInteractor {
   private String text;
 
-  public SaveInteractor(SharedPreferencesRepository sharedPreferencesRepository) {
-    super(sharedPreferencesRepository);
+  public SaveInteractor(Repository repository) {
+    super(repository);
   }
 
-  public void saveSharedPreferences(String text, final MainPresenterListener listener) {
+  public void saveString(String text, final MainPresenterListener listener) {
     this.text = text;
     runUiThread(listener);
   }
@@ -28,7 +28,7 @@ public class SaveInteractor extends MainInteractor {
         App.getContext().getResources().getString(R.string.monkey))) {
       listener.onError(text);
     } else {
-      sharedPreferencesRepository.saveString(text);
+      repository.saveString(text);
       listener.onSuccessSave();
     }
   }

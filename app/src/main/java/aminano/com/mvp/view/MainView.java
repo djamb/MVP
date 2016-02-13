@@ -4,6 +4,7 @@ import aminano.com.mvp.R;
 import aminano.com.mvp.interactor.LoadInteractor;
 import aminano.com.mvp.interactor.SaveInteractor;
 import aminano.com.mvp.presenter.MainPresenter;
+import aminano.com.mvp.repository.Repository;
 import aminano.com.mvp.repository.SharedPreferencesRepository;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,7 +20,7 @@ public class MainView extends Activity implements MainViewInterface, Button.OnCl
   private ProgressBar progressBar;
   private LoadInteractor loadInteractor;
   private SaveInteractor saveInteractor;
-  private SharedPreferencesRepository sharedPreferencesRepository;
+  private Repository repository;
   private EditText editText;
 
   @Override
@@ -28,11 +29,16 @@ public class MainView extends Activity implements MainViewInterface, Button.OnCl
     setContentView(R.layout.activity_main);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
     editText = (EditText) findViewById(R.id.editText);
-    sharedPreferencesRepository = new SharedPreferencesRepository();
-    loadInteractor = new LoadInteractor(sharedPreferencesRepository);
-    saveInteractor = new SaveInteractor(sharedPreferencesRepository);
-    mainPresenter = new MainPresenter(this, saveInteractor, loadInteractor);
     findViewById(R.id.button).setOnClickListener(this);
+
+    // Create repository
+    repository = new SharedPreferencesRepository();
+    // Create interactors
+    loadInteractor = new LoadInteractor(repository);
+    saveInteractor = new SaveInteractor(repository);
+    // Create presenter
+    mainPresenter = new MainPresenter(this, saveInteractor, loadInteractor);
+    // Show loading
     mainPresenter.doActionLoad();
   }
 
@@ -47,7 +53,7 @@ public class MainView extends Activity implements MainViewInterface, Button.OnCl
   }
 
   @Override
-  public void loadSharedPreferences(String text) {
+  public void showText(String text) {
     editText.setText(text);
   }
 

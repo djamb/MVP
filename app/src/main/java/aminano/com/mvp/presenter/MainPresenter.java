@@ -22,13 +22,13 @@ public class MainPresenter implements MainPresenterInterface, MainPresenterListe
   @Override
   public void doActionSave(String storeString) {
     mainView.enableLoading();
-    saveInteractor.saveSharedPreferences(storeString, this);
+    saveInteractor.saveString(storeString, this);
   }
 
   @Override
   public void doActionLoad() {
     mainView.enableLoading();
-    loadInteractor.loadSharedPreferences(this);
+    loadInteractor.loadString(this);
   }
 
   @Override
@@ -45,6 +45,6 @@ public class MainPresenter implements MainPresenterInterface, MainPresenterListe
   @Override
   public void onSuccessLoad(String text) {
     mainView.disableLoading();
-    mainView.loadSharedPreferences(text);
+    mainView.showText(text);
   }
 }

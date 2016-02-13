@@ -1,7 +1,7 @@
 package aminano.com.mvp.interactor;
 
 import aminano.com.mvp.presenter.MainPresenterListener;
-import aminano.com.mvp.repository.SharedPreferencesRepository;
+import aminano.com.mvp.repository.Repository;
 import android.os.Handler;
 
 /**
@@ -9,10 +9,10 @@ import android.os.Handler;
  */
 public abstract class MainInteractor {
 
-  SharedPreferencesRepository sharedPreferencesRepository;
+  Repository repository;
 
-  public MainInteractor(SharedPreferencesRepository sharedPreferencesRepository) {
-    this.sharedPreferencesRepository = sharedPreferencesRepository;
+  public MainInteractor(Repository repository) {
+    this.repository = repository;
   }
 
   public void runUiThread(final MainPresenterListener listener) {
