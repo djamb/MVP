@@ -10,5 +10,5 @@ public interface MainViewInterface {
 
     void dialogError(String text);
 
-    void loadSharedPreferences(String text);
+    void showText(String text);
 }
